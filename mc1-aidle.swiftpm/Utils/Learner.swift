@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Learner {
+enum Learner: Speakerable {
     case byo
     case ddan
     case jake
