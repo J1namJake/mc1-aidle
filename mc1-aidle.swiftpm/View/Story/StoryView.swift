@@ -15,8 +15,18 @@ struct StoryView: View {
             if let scene = viewModel.scene {
                 Text(scene.speaker.name)
                 Text(scene.script)
-                Button("Next") {
-                    viewModel.gotoNextScene()
+                
+                if let options = (scene as? StorySceneHasOptions)?.options {
+                    ForEach(options) { option in
+                        Button(option.text) {
+                            viewModel.gotoScene(of: option)
+                        }
+                    }
+                    
+                } else if scene is GeneralStoryScene {
+                    Button("Next") {
+                        viewModel.gotoNextScene()
+                    }
                 }
             }
         }

@@ -15,6 +15,16 @@ class StoryViewModel: ObservableObject {
     }
     
     func gotoNextScene() {
-        scene = scene?.nextScene
+        guard let generalScene = scene as? GeneralStoryScene else {
+            return
+        }
+        scene = generalScene.nextScene
+    }
+    
+    func gotoScene(of option: StorySceneHasOptions.Option) {
+        guard let nextScene = option.nextScene else {
+            return
+        }
+        scene = nextScene
     }
 }
