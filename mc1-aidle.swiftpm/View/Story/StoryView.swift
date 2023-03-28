@@ -12,13 +12,20 @@ struct StoryView: View {
     
     var body: some View {
         VStack {
+            if let scene = viewModel.scene {
+                Text(scene.speaker.name)
+                Text(scene.script)
+                Button("Next") {
+                    viewModel.gotoNextScene()
+                }
+            }
         }
     }
 }
 
 struct StoryView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = StoryViewModel()
+        let viewModel = StoryViewModel(scene: .first)
         return StoryView(viewModel: viewModel)
     }
 }
