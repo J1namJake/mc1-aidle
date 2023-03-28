@@ -11,25 +11,61 @@ struct StoryView: View {
     @ObservedObject var viewModel: StoryViewModel
     
     var body: some View {
-        VStack {
+        ZStack {
             if let scene = viewModel.scene {
-                Text(scene.speaker.name)
-                Text(scene.script)
-                
-                if let options = (scene as? StorySceneHasOptions)?.options {
+                VStack {
+                    optionsView(scene: scene)
+                    Spacer()
+                    dialogView(scene: scene)
+                }
+            }
+        }
+    }
+    
+    private func optionsView(scene: StoryScene) -> some View {
+        Group {
+            if let options = (scene as? StorySceneHasOptions)?.options {
+                List {
                     ForEach(options) { option in
                         Button(option.text) {
                             viewModel.gotoScene(of: option)
                         }
                     }
-                    
-                } else if scene is GeneralStoryScene {
-                    Button("Next") {
-                        viewModel.gotoNextScene()
+                }
+                .font(.largeTitle)
+            }
+        }
+    }
+    
+    private func dialogView(scene: StoryScene) -> some View {
+        VStack(spacing: 0) {
+            HStack {
+                Text(scene.speaker.name)
+                    .font(.headline)
+                    .background(.black)
+                    .foregroundColor(.white)
+                
+                Spacer()
+            }
+            
+            VStack {
+                Text(scene.script)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(.white)
+                
+                HStack {
+                    Spacer()
+                    if scene is GeneralStoryScene {
+                        Button("Next") {
+                            viewModel.gotoNextScene()
+                        }
                     }
                 }
             }
+            .padding()
+            .background(.black.opacity(0.5))
         }
+        .padding()
     }
 }
 

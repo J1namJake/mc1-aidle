@@ -24,8 +24,8 @@ extension StoryScene {
         speaker: Learner.byo,
         script: "나도 인사할까",
         options: [
-            .init(text: "ㅇㅇ", nextScene: .yes),
-            .init(text: "ㄴㄴ", nextScene: .no)
+            .init(text: "인사하자", nextScene: .yes),
+            .init(text: "하지말자", nextScene: .no)
         ]
     )
     
