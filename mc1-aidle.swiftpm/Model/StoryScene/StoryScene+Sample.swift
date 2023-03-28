@@ -36,6 +36,7 @@ extension StoryScene {
     )
     
     static let no = EndingStoryScene(
+        imageKey: "ajtmr",
         speaker: Learner.byo,
         script: "..."
     )
