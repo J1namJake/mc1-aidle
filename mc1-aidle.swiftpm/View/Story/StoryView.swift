@@ -38,18 +38,26 @@ struct StoryView: View {
     }
     
     private func optionsView(scene: StoryScene) -> some View {
-        Group {
+        VStack {
             if let options = (scene as? StorySceneHasOptions)?.options {
-                List {
-                    ForEach(options) { option in
-                        Button(option.text) {
-                            viewModel.gotoScene(of: option)
-                        }
+                ForEach(options) { option in
+                    Button {
+                        viewModel.gotoScene(of: option)
+                    } label: {
+                        Text(option.text)
+                            .padding()
+                            .font(.title)
+                            .background(
+                                Capsule()
+                                    .fill(Color.accentColor)
+                            )
+                            .foregroundColor(.white)
                     }
                 }
                 .font(.largeTitle)
             }
         }
+        .padding()
     }
     
     private func dialogView(scene: StoryScene) -> some View {
