@@ -9,6 +9,7 @@ import Foundation
 
 extension StoryScene {
     static let first = GeneralStoryScene(
+        imageKey: "meeting",
         speaker: Learner.byo,
         script: "안녕하세요",
         nextScene: .second

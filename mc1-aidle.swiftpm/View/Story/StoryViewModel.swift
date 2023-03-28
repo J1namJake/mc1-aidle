@@ -8,7 +8,15 @@
 import Foundation
 
 class StoryViewModel: ObservableObject {
-    @Published var scene: StoryScene?
+    @Published var scene: StoryScene? {
+        didSet {
+            if let imageKey = scene?.imageKey {
+                self.imageKey = imageKey
+            }
+        }
+    }
+    
+    @Published var imageKey: String?
     
     init(scene: StoryScene) {
         self.scene = scene

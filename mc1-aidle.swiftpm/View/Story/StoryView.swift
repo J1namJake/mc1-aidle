@@ -11,13 +11,28 @@ struct StoryView: View {
     @ObservedObject var viewModel: StoryViewModel
     
     var body: some View {
-        ZStack {
-            if let scene = viewModel.scene {
-                VStack {
-                    optionsView(scene: scene)
-                    Spacer()
-                    dialogView(scene: scene)
+        GeometryReader { geometry in
+            ZStack {
+                imageView(width: geometry.size.width)
+                
+                if let scene = viewModel.scene {
+                    VStack {
+                        optionsView(scene: scene)
+                        Spacer()
+                        dialogView(scene: scene)
+                    }
                 }
+            }
+        }
+    }
+    
+    private func imageView(width: CGFloat) -> some View {
+        Group {
+            if let imageKey = viewModel.imageKey {
+                Image(imageKey)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: width)
             }
         }
     }

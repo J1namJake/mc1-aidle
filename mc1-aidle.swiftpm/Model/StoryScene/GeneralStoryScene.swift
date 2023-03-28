@@ -10,10 +10,11 @@ import Foundation
 final class GeneralStoryScene: StoryScene {
     let nextScene: StoryScene
     
-    init(speaker: Speakerable,
+    init(imageKey: String? = nil,
+         speaker: Speakerable,
          script: String,
          nextScene: StoryScene) {
         self.nextScene = nextScene
-        super.init(speaker: speaker, script: script)
+        super.init(imageKey: imageKey, speaker: speaker, script: script)
     }
 }

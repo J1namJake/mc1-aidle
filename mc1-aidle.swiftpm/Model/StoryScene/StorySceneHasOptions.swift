@@ -10,11 +10,12 @@ import Foundation
 final class StorySceneHasOptions: StoryScene {
     let options: [Option]
     
-    init(speaker: Speakerable,
+    init(imageKey: String? = nil,
+         speaker: Speakerable,
          script: String,
          options: [Option]) {
         self.options = options
-        super.init(speaker: speaker, script: script)
+        super.init(imageKey: imageKey, speaker: speaker, script: script)
     }
 }
 

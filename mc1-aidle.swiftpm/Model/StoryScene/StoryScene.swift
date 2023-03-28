@@ -8,11 +8,14 @@
 import Foundation
 
 class StoryScene {
+    let imageKey: String?
     let speaker: Speakerable
     let script: String
     
-    init(speaker: Speakerable,
+    init(imageKey: String? = nil,
+         speaker: Speakerable,
          script: String) {
+        self.imageKey = imageKey
         self.speaker = speaker
         self.script = script
     }
