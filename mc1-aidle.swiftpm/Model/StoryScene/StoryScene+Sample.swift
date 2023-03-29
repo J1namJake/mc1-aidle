@@ -10,7 +10,7 @@ import Foundation
 extension StoryScene {
     static let first = GeneralStoryScene(
         imageKey: "meeting",
-        speaker: Learner.byo,
+        speaker: Learner.juju,
         script: "안녕하세요",
         nextScene: .second
     )
@@ -41,7 +41,7 @@ extension StoryScene {
         imageKey: "ajtmr",
         speaker: Learner.byo,
         script: "...",
-        nextScene: nil
+        nextScene: SampleScene.empty
     )
     
     static let hihi = EndingStoryScene(

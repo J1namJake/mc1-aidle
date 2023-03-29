@@ -16,6 +16,8 @@ struct NarrativeView: View {
                 profileView(profile: profile)
             } else if let storyScene = viewModel.getScene() as? StoryScene {
                 storyView(scene: storyScene)
+            } else {
+                Text("끝")
             }
         }
     }
