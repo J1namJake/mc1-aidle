@@ -40,12 +40,14 @@ extension StoryScene {
     static let no = EndingStoryScene(
         imageKey: "ajtmr",
         speaker: Learner.byo,
-        script: "..."
+        script: "...",
+        nextScene: nil
     )
     
     static let hihi = EndingStoryScene(
         imageKey: "meeting",
         speaker: ExtraSpeaker.teamMembers,
-        script: "ㅎㅇㅎㅇ"
+        script: "ㅎㅇㅎㅇ",
+        nextScene: Profile.byo
     )
 }

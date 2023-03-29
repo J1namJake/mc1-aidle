@@ -7,7 +7,7 @@
 
 import Foundation
 
-class StoryScene: StorySceneable {
+class StoryScene: StorySceneable, NarrativeSceneable {
     let imageKey: String?
     
     init(imageKey: String? = nil) {

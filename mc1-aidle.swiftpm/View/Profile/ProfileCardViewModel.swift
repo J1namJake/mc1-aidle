@@ -7,8 +7,14 @@
 
 import Foundation
 
+protocol ProfileCardViewModelDelegate: AnyObject {
+    func profileCardDidEnd()
+}
+
 class ProfileCardViewModel : ObservableObject{
     @Published var profile: Profile?
+    
+    weak var delegate: ProfileCardViewModelDelegate?
     
     init(profile: Profile? = nil) {
         self.profile = profile
@@ -18,4 +24,7 @@ class ProfileCardViewModel : ObservableObject{
         profile = profile?.animate
     }
     
+    func gotoNextScene() {
+        delegate?.profileCardDidEnd()
+    }
 }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProfileCardView: View {
-    
     @ObservedObject var viewModel: ProfileCardViewModel
     
     var body: some View {
@@ -18,7 +17,9 @@ struct ProfileCardView: View {
                 Text(profile.title)
                 Image("")
                 abilityView(profile: profile)
-                
+                Button("Next(test)") {
+                    viewModel.gotoNextScene()
+                }
             }
         }
         

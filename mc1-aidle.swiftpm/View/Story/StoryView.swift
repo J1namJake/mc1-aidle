@@ -13,11 +13,7 @@ struct StoryView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                Button {
-                    viewModel.gotoNextScene()
-                } label: {
-                    imageView(width: geometry.size.width)
-                }
+                imageView(width: geometry.size.width)
                 
                 if let scene = viewModel.getScene() {
                     VStack {
@@ -43,6 +39,9 @@ struct StoryView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: width)
+                    .onTapGesture {
+                        viewModel.gotoNextScene()
+                    }
             }
         }
     }
@@ -86,10 +85,10 @@ struct StoryView: View {
                 
                 HStack {
                     Spacer()
-                    if scene is ContinuousStorySceneable {
-                        Button("Next") {
-                            viewModel.gotoNextScene()
-                        }
+                    
+                    if scene is ContinuousStorySceneable || scene is ContinuousNarrativeSceneable {
+                        Text("Next")
+                            .foregroundColor(.accentColor)
                     }
                 }
             }
@@ -97,6 +96,9 @@ struct StoryView: View {
             .background(.black.opacity(0.5))
         }
         .padding()
+        .onTapGesture {
+            viewModel.gotoNextScene()
+        }
     }
 }
 

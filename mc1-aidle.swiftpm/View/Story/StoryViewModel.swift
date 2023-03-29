@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol StoryViewModelDelegate: AnyObject {
+    func storyDidEnd(nextScene: NarrativeSceneable?)
+}
+
 class StoryViewModel: ObservableObject {
     @Published private var scene: StorySceneable? {
         didSet {
@@ -18,6 +22,8 @@ class StoryViewModel: ObservableObject {
     }
     
     @Published private var imageKey: String?
+    
+    weak var delegate: StoryViewModelDelegate?
     
     init(scene: StoryScene) {
         self.scene = scene
@@ -32,10 +38,11 @@ class StoryViewModel: ObservableObject {
     }
     
     func gotoNextScene() {
-        guard let generalScene = scene as? ContinuousStorySceneable else {
-            return
+        if let storyScene = scene as? ContinuousStorySceneable {
+            scene = storyScene.nextScene
+        } else if let narrativeScene = scene as? ContinuousNarrativeSceneable {
+            delegate?.storyDidEnd(nextScene: narrativeScene.nextScene)
         }
-        scene = generalScene.nextScene
     }
     
     func gotoScene(of option: SelectionStoryScene.Option) {
