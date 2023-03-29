@@ -11,14 +11,16 @@ struct NarrativeView: View {
     @ObservedObject var viewModel: NarrativeViewModel
     
     var body: some View {
-        ZStack {
-            if let profile = viewModel.getScene() as? Profile {
-                profileView(profile: profile)
-            } else if let storyScene = viewModel.getScene() as? StoryScene {
-                storyView(scene: storyScene)
-            } else {
-                Text("끝")
+        if let scene = viewModel.getScene() {
+            ZStack {
+                if let profile = scene as? Profile {
+                    profileView(profile: profile)
+                } else if let storyScene = scene as? StoryScene {
+                    storyView(scene: storyScene)
+                }
             }
+        } else {
+            Text("끝")
         }
     }
     

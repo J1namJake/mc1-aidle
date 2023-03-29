@@ -41,7 +41,7 @@ extension StoryScene {
         imageKey: "ajtmr",
         speaker: Learner.byo,
         script: "...",
-        nextScene: SampleScene.empty
+        nextScene: nil
     )
     
     static let hihi = EndingStoryScene(
