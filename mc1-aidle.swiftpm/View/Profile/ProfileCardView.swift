@@ -21,8 +21,8 @@ struct ProfileCardView: View {
                 Text(profile.title)
                 Image("")
                 HStack{
-                    Text(profile.ability[0])
-                    Text(profile.abilityLebel[0])
+                    Text(profile.ability[0].name)
+                    Text(profile.ability[0].level)
                     //if animate {
                     //    Text(profile.abilityLebel[0])
                     //        .onAppear() {
@@ -38,12 +38,12 @@ struct ProfileCardView: View {
                     //}
                 }
                 HStack{
-                    Text(profile.ability[1])
-                    Text(profile.abilityLebel[1])
+                    Text(profile.ability[1].name)
+                    Text(profile.ability[1].level)
                 }
                 HStack{
-                    Text(profile.ability[2])
-                    Text(profile.abilityLebel[2])
+                    Text(profile.ability[2].name)
+                    Text(profile.ability[2].level)
                 }
             }
         }

@@ -11,24 +11,35 @@ class Profile {
     let chapter: String
     let title : String
     let imageKey : String
-    let ability: [String]
-    let abilityLebel: [String]
+    let ability: [Ability]
     let animate: Profile?
     
-    init(chapter: String, title: String, imageKey: String, ability: [String], abilityLebel: [String], animate: Profile? = nil) {
+    init(chapter: String, title: String, imageKey: String, ability: [Ability], animate: Profile? = nil) {
         self.chapter = chapter
         self.title = title
         self.imageKey = imageKey
         self.ability = ability
-        self.abilityLebel = abilityLebel
         self.animate = animate
     }
+    
 }
 
 extension Profile {
+    final class Ability : Identifiable {
+        let name : String
+        let level : String
+        
+        init(name: String, level: String) {
+            self.name = name
+            self.level = level
+        }
+    }
     static let juju = Profile(
-        chapter: "Chapter.1", title: "숨막히는 첫만남", imageKey: "juju", ability: ["열정","발표","춤"], abilityLebel: ["🔥🔥🔥🔥🔥","🌟🌟","⭐️⭐️⭐️⭐️⭐️"], animate: .juju2)
+        chapter: "Chapter.1", title: "숨막히는 첫만남", imageKey: "juju", ability:[
+            .init(name: "열정", level: "🔥🔥🔥🔥🔥"),
+            .init(name: "발표", level: "🌟🌟"),
+            .init(name: "춤", level: "⭐️⭐️⭐️⭐️⭐️")
+        ]
+    )
     
-    static let juju2 = Profile(
-        chapter: "", title: "", imageKey: "juju", ability: ["열정","발표","춤"], abilityLebel: ["🔥🔥🔥","🌟🌟","⭐️⭐️⭐️⭐️⭐️"])
 }
