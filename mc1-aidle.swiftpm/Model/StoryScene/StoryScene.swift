@@ -2,21 +2,15 @@
 //  StoryScene.swift
 //  mc1-aidle
 //
-//  Created by byo on 2023/03/28.
+//  Created by byo on 2023/03/29.
 //
 
 import Foundation
 
-class StoryScene {
+class StoryScene: StorySceneable {
     let imageKey: String?
-    let speaker: Speakerable
-    let script: String
     
-    init(imageKey: String? = nil,
-         speaker: Speakerable,
-         script: String) {
+    init(imageKey: String? = nil) {
         self.imageKey = imageKey
-        self.speaker = speaker
-        self.script = script
     }
 }

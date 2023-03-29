@@ -13,13 +13,23 @@ struct StoryView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                imageView(width: geometry.size.width)
+                Button {
+                    viewModel.gotoNextScene()
+                } label: {
+                    imageView(width: geometry.size.width)
+                }
                 
-                if let scene = viewModel.scene {
+                if let scene = viewModel.getScene() {
                     VStack {
-                        optionsView(scene: scene)
+                        if let options = (scene as? SelectionStoryScene)?.options {
+                            optionsView(options: options)
+                        }
+                        
                         Spacer()
-                        dialogView(scene: scene)
+                        
+                        if let dialogScene = scene as? DialogStorySceneable {
+                            dialogView(scene: dialogScene)
+                        }
                     }
                 }
             }
@@ -28,7 +38,7 @@ struct StoryView: View {
     
     private func imageView(width: CGFloat) -> some View {
         Group {
-            if let imageKey = viewModel.imageKey {
+            if let imageKey = viewModel.getImageKey() {
                 Image(imageKey)
                     .resizable()
                     .scaledToFit()
@@ -37,30 +47,28 @@ struct StoryView: View {
         }
     }
     
-    private func optionsView(scene: StoryScene) -> some View {
+    private func optionsView(options: [SelectionStoryScene.Option]) -> some View {
         VStack {
-            if let options = (scene as? StorySceneWithOptions)?.options {
-                ForEach(options) { option in
-                    Button {
-                        viewModel.gotoScene(of: option)
-                    } label: {
-                        Text(option.text)
-                            .padding()
-                            .font(.title)
-                            .background(
-                                Capsule()
-                                    .fill(Color.accentColor)
-                            )
-                            .foregroundColor(.white)
-                    }
+            ForEach(options) { option in
+                Button {
+                    viewModel.gotoScene(of: option)
+                } label: {
+                    Text(option.text)
+                        .padding()
+                        .font(.title)
+                        .background(
+                            Capsule()
+                                .fill(Color.accentColor)
+                        )
+                        .foregroundColor(.white)
                 }
-                .font(.largeTitle)
             }
+            .font(.largeTitle)
         }
         .padding()
     }
     
-    private func dialogView(scene: StoryScene) -> some View {
+    private func dialogView(scene: DialogStorySceneable) -> some View {
         VStack(spacing: 0) {
             HStack {
                 Text(scene.speaker.name)
@@ -78,7 +86,7 @@ struct StoryView: View {
                 
                 HStack {
                     Spacer()
-                    if scene is GeneralStoryScene {
+                    if scene is ContinuousStorySceneable {
                         Button("Next") {
                             viewModel.gotoNextScene()
                         }

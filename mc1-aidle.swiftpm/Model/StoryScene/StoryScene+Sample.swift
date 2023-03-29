@@ -21,7 +21,7 @@ extension StoryScene {
         nextScene: .options
     )
     
-    static let options = StorySceneWithOptions(
+    static let options = SelectionStoryScene(
         speaker: Learner.byo,
         script: "나도 인사할까",
         options: [
@@ -31,6 +31,7 @@ extension StoryScene {
     )
     
     static let yes = GeneralStoryScene(
+        imageKey: "ajtmr",
         speaker: Learner.byo,
         script: "ㅎㅇ",
         nextScene: .hihi
@@ -43,6 +44,7 @@ extension StoryScene {
     )
     
     static let hihi = EndingStoryScene(
+        imageKey: "meeting",
         speaker: ExtraSpeaker.teamMembers,
         script: "ㅎㅇㅎㅇ"
     )
