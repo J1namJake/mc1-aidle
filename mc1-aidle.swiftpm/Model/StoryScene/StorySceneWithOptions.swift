@@ -1,5 +1,5 @@
 //
-//  StorySceneHasOptions.swift
+//  StorySceneWithOptions.swift
 //  mc1-aidle
 //
 //  Created by byo on 2023/03/28.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class StorySceneHasOptions: StoryScene {
+final class StorySceneWithOptions: StoryScene {
     let options: [Option]
     
     init(imageKey: String? = nil,
@@ -19,7 +19,7 @@ final class StorySceneHasOptions: StoryScene {
     }
 }
 
-extension StorySceneHasOptions {
+extension StorySceneWithOptions {
     final class Option: Identifiable {
         let text: String
         let nextScene: StoryScene?

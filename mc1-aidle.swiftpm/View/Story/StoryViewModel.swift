@@ -29,7 +29,7 @@ class StoryViewModel: ObservableObject {
         scene = generalScene.nextScene
     }
     
-    func gotoScene(of option: StorySceneHasOptions.Option) {
+    func gotoScene(of option: StorySceneWithOptions.Option) {
         guard let nextScene = option.nextScene else {
             return
         }

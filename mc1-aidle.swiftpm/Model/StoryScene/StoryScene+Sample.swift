@@ -21,7 +21,7 @@ extension StoryScene {
         nextScene: .options
     )
     
-    static let options = StorySceneHasOptions(
+    static let options = StorySceneWithOptions(
         speaker: Learner.byo,
         script: "나도 인사할까",
         options: [

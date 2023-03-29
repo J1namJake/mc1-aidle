@@ -39,7 +39,7 @@ struct StoryView: View {
     
     private func optionsView(scene: StoryScene) -> some View {
         VStack {
-            if let options = (scene as? StorySceneHasOptions)?.options {
+            if let options = (scene as? StorySceneWithOptions)?.options {
                 ForEach(options) { option in
                     Button {
                         viewModel.gotoScene(of: option)
