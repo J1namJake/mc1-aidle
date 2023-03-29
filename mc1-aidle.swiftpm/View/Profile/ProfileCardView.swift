@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct ProfileCardView: View {
-    //애니매이터 유무에 따라 나중에 사용하려고 주석 해놨습니다.
-    //@State var animate = false
-    //@State private var fadeInOut = false
     
     @ObservedObject var viewModel: ProfileCardViewModel
     
@@ -20,39 +17,22 @@ struct ProfileCardView: View {
                 Text(profile.chapter)
                 Text(profile.title)
                 Image("")
+                abilityView(profile: profile)
+                
+            }
+        }
+        
+    }
+    
+    private func abilityView(profile: Profile) -> some View {
+        VStack{
+            ForEach(profile.ability) { ability in
                 HStack{
-                    Text(profile.ability[0].name)
-                    Text(profile.ability[0].level)
-                    //if animate {
-                    //    Text(profile.abilityLebel[0])
-                    //        .onAppear() {
-                    //            withAnimation(Animation
-                    //                .easeInOut(duration: 0.6)
-                    //                .repeatCount(2)){
-                    //                    fadeInOut.toggle()
-                    //                }
-                    //        }.opacity(fadeInOut ? 1 : 0)
-//
-                    //}else {
-                    //    Text(profile.abilityLebel[0])
-                    //}
-                }
-                HStack{
-                    Text(profile.ability[1].name)
-                    Text(profile.ability[1].level)
-                }
-                HStack{
-                    Text(profile.ability[2].name)
-                    Text(profile.ability[2].level)
+                    Text(ability.name)
+                    Text(ability.level)
                 }
             }
         }
-        //.onTapGesture {
-        //    if animate {
-        //        viewModel.animateAbility()
-        //    }
-        //    animate = false
-        //}
     }
 }
 
