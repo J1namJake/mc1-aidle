@@ -8,18 +8,35 @@
 import SwiftUI
 
 struct ProfileCardView: View {
+    @State var animate = false
+    @State private var fadeInOut = false
     
-    var viewModel: ProfileCardViewModel
+    @ObservedObject var viewModel: ProfileCardViewModel
     
     var body: some View {
         VStack{
             if let profile = viewModel.profile {
-                Text("Chapter."+String(profile.chapter))
-                Text(profile.title)
+                if !animate {
+                    Text(profile.chapter)
+                    Text(profile.title)
+                }
                 Image("")
                 HStack{
                     Text(profile.ability[0])
-                    Text(profile.abilityLebel[0])
+                    if animate {
+                        Text(profile.abilityLebel[0])
+                            .onAppear() {
+                                withAnimation(Animation
+                                    .easeInOut(duration: 0.6)
+                                    .repeatCount(2)){
+                                        fadeInOut.toggle()
+                                    }
+                            }.opacity(fadeInOut ? 1 : 0)
+
+                    }else {
+                        Text(profile.abilityLebel[0])
+                    }
+                    Spacer()
                 }
                 HStack{
                     Text(profile.ability[1])
@@ -30,6 +47,12 @@ struct ProfileCardView: View {
                     Text(profile.abilityLebel[2])
                 }
             }
+        }
+        .onTapGesture {
+            if animate {
+                viewModel.animateAbility()
+            }
+            animate = false
         }
     }
 }

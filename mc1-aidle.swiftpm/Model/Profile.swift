@@ -8,20 +8,25 @@
 import Foundation
 
 class Profile {
-    let chapter: Int
+    let chapter: String
     let title : String
     let ability: [String]
     let abilityLebel: [String]
+    let animate: Profile?
     
-    init(chapter: Int, title: String, ability: [String], abilityLebel: [String]) {
+    init(chapter: String, title: String, ability: [String], abilityLebel: [String], animate: Profile? = nil) {
         self.chapter = chapter
         self.title = title
         self.ability = ability
         self.abilityLebel = abilityLebel
+        self.animate = animate
     }
 }
 
 extension Profile {
     static let juju = Profile(
-        chapter: 1, title: "숨막히는 첫만남",ability: ["열정","발표","춤"], abilityLebel: ["🔥🔥🔥🔥🔥","🌟🌟","⭐️⭐️⭐️⭐️⭐️"])
+        chapter: "Chapter.1", title: "숨막히는 첫만남",ability: ["열정","발표","춤"], abilityLebel: ["🔥🔥🔥🔥🔥","🌟🌟","⭐️⭐️⭐️⭐️⭐️"], animate: .juju2)
+    
+    static let juju2 = Profile(
+        chapter: "", title: "", ability: ["열정","발표","춤"], abilityLebel: ["🔥🔥🔥","🌟🌟","⭐️⭐️⭐️⭐️⭐️"])
 }

@@ -7,10 +7,15 @@
 
 import Foundation
 
-class ProfileCardViewModel {
+class ProfileCardViewModel : ObservableObject{
     @Published var profile: Profile?
     
     init(profile: Profile? = nil) {
         self.profile = profile
     }
+    
+    func animateAbility() {
+        profile = profile?.animate
+    }
+    
 }
