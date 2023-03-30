@@ -12,12 +12,14 @@ extension LevelCard {
         static let suri = LevelCard(
             firstImageKey: "jujuLv1",
             secondImageKey: "jujuLv2",
+            audioKey: "캐릭터카드등장",
             nextScene: StoryScene.Stage3.worry
         )
         
         static let theo = LevelCard(
             firstImageKey: "jujuLv1",
             secondImageKey: "jujuLv2",
+            audioKey: "캐릭터카드등장",
             nextScene: nil
         )
 
