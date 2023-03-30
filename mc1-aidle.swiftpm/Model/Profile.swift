@@ -67,7 +67,7 @@ extension Profile {
     
     
     static let juju = Profile(
-        chapter: "Chapter.1", title: "숨막히는 첫만남", imageKey: "juju", ability:[
+        chapter: "Chapter.1", title: "숨막히는 첫만남", imageKey: "jujuTest", ability:[
             .init(name: "열정", level: .init(imoge: "🔥", count: 5)),
             .init(name: "발표", level: .init(imoge: "🌟", count: 2)),
             .init(name: "춤", level: .init(imoge: "⭐️", count: 5))
@@ -75,15 +75,14 @@ extension Profile {
     )
     
     static let jujuDown = Profile(
-        chapter: "", title: "", imageKey: "juju", ability:[
+        chapter: "", title: "", imageKey: "jujuTest", ability:[
             .init(name: "열정", level: .init(imoge: "🔥", count: 5)),
             .init(name: "발표", level: .init(imoge: "🌟", count: 2)),
             .init(name: "춤", level: .init(imoge: "⭐️", count: 5))
         ]
         ,levelUpdateFlag: true, levelUpdate: [
             
-            .init(name: "열정", updateCount: -2),
-            .init(name: "춤", updateCount: 1)
+            .init(name: "열정", updateCount: -2)
             
         ]
     )

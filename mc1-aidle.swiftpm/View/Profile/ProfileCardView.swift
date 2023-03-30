@@ -19,8 +19,16 @@ struct ProfileCardView: View {
             VStack{
                 if let profile = viewModel.profile {
                     Text(profile.chapter)
+                        .font(.system(size: 80))
+                        .foregroundColor(.titleTextColor)
+                        .padding(29)
                     Text(profile.title)
-                    Image("")
+                        .font(.system(size: 40))
+                        .foregroundColor(.titleTextColor)
+                    Image(profile.imageKey)
+                        .resizable()
+                        .frame(width: 135,height: 207)
+                        .padding(71)
                     abilityView(profile: profile)
                     
                 }
@@ -35,16 +43,16 @@ struct ProfileCardView: View {
     }
     
     private func abilityView(profile: Profile) -> some View {
-        VStack{
+        VStack(alignment: .leading){
             ForEach(profile.ability) { ability in
                 HStack{
                     Text(ability.name)
                         .font(.system(size: 25))
                         .foregroundColor(.titleTextColor)
                     ForEach(0..<max(ability.level.count,0), id: \.self){ _ in
-                        Text(ability.level.imoge)
+                        Text(ability.level.imoge).font(.system(size: 34))
                     }
-                }.padding(24)
+                }.padding(12)
             }
         }
     }
@@ -52,7 +60,7 @@ struct ProfileCardView: View {
 
 struct ProfileCard_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = ProfileCardViewModel(profile: .jujuDown)
+        let viewModel = ProfileCardViewModel(profile: .juju)
         return ProfileCardView(viewModel: viewModel)
     }
 }
