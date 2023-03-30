@@ -15,7 +15,7 @@ struct StoryView: View {
             ZStack {
                 imageView(width: geometry.size.width)
                 
-                if let scene = viewModel.getScene() {
+                if let scene = viewModel.getCurrentScene() {
                     VStack {
                         if let options = (scene as? SelectionStoryScene)?.options {
                             optionsView(options: options)
@@ -30,6 +30,7 @@ struct StoryView: View {
                 }
             }
         }
+        .ignoresSafeArea()
     }
     
     private func imageView(width: CGFloat) -> some View {
@@ -39,6 +40,7 @@ struct StoryView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: width)
+                    .animation(.easeInOut, value: imageKey)
                     .onTapGesture {
                         viewModel.gotoNextScene()
                     }
@@ -53,49 +55,48 @@ struct StoryView: View {
                     viewModel.gotoScene(of: option)
                 } label: {
                     Text(option.text)
-                        .padding()
-                        .font(.title)
-                        .background(
-                            Capsule()
-                                .fill(Color.accentColor)
-                        )
-                        .foregroundColor(.white)
+                        .frame(height: 75)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 32)
+                        .font(.system(size: 24))
+                        .foregroundColor(.black)
                 }
+                .background(
+                    Image("layout_option")
+                        .resizable()
+                )
             }
-            .font(.largeTitle)
         }
-        .padding()
+        .padding(.top, 64)
+        .padding(.horizontal, 20)
     }
     
     private func dialogView(scene: DialogStorySceneable) -> some View {
         VStack(spacing: 0) {
             HStack {
                 Text(scene.speaker.name)
-                    .font(.headline)
-                    .background(.black)
-                    .foregroundColor(.white)
-                
+                    .frame(height: 64)
+                    .padding(.horizontal, 24)
+                    .font(.system(size: 30))
+                    .background(.white)
+                    .border(.black, width: 5)
+                    .offset(y: 5)
                 Spacer()
             }
             
             VStack {
                 Text(scene.script)
+                    .font(.system(size: 24))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundColor(.white)
-                
-                HStack {
-                    Spacer()
-                    
-                    if scene is ContinuousStorySceneable || scene is ContinuousNarrativeSceneable {
-                        Text("Next")
-                            .foregroundColor(.accentColor)
-                    }
-                }
+                Spacer()
             }
-            .padding()
-            .background(.black.opacity(0.5))
+            .padding(32)
+            .frame(height: 311)
+            .background(
+                Image("layout_dialog")
+                    .resizable()
+            )
         }
-        .padding()
         .onTapGesture {
             viewModel.gotoNextScene()
         }
@@ -104,7 +105,7 @@ struct StoryView: View {
 
 struct StoryView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = StoryViewModel(scene: .first)
+        let viewModel = StoryViewModel(scene: StoryScene.Sample.general)
         return StoryView(viewModel: viewModel)
     }
 }

@@ -5,31 +5,35 @@
 //  Created by byo on 2023/03/29.
 //
 
-import Foundation
+import SwiftUI
 
 final class NarrativeViewModel: ObservableObject {
-    @Published private var scene: NarrativeSceneable?
+    @Published private var currentScene: NarrativeSceneable?
     
     init(scene: NarrativeSceneable) {
-        self.scene = scene
+        self.currentScene = scene
     }
     
-    func getScene() -> NarrativeSceneable? {
-        scene
+    func getCurrentScene() -> NarrativeSceneable? {
+        currentScene
     }
 }
 
 extension NarrativeViewModel: ProfileCardViewModelDelegate {
     func profileCardDidEnd() {
-        guard let continousScene = scene as? ContinuousNarrativeSceneable else {
+        guard let continousScene = currentScene as? ContinuousNarrativeSceneable else {
             return
         }
-        scene = continousScene.nextScene
+        withAnimation {
+            currentScene = continousScene.nextScene
+        }
     }
 }
 
 extension NarrativeViewModel: StoryViewModelDelegate {
     func storyDidEnd(nextScene: NarrativeSceneable?) {
-        scene = nextScene
+        withAnimation {
+            currentScene = nextScene
+        }
     }
 }

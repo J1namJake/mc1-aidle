@@ -2,7 +2,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        let viewModel = NarrativeViewModel(scene: Profile.juju)
+        narrativeView()
+    }
+    
+    private func narrativeView() -> some View {
+        let viewModel = NarrativeViewModel(scene: Profile.Sample.chapter1)
         return NarrativeView(viewModel: viewModel)
     }
 }

@@ -71,11 +71,11 @@ extension Profile {
             .init(name: "춤", level: .init(imoge: "⭐️", count: 5))
         ],
         levelUpdate: [
-            
+
             .init(name: "열정", updateCount: -2)
             
         ],
-        nextScene: StoryScene.first
+        nextScene: nil
     )
     
 }
