@@ -11,7 +11,7 @@ final class ImageStoryScene: StoryScene, ContinuousStorySceneable {
     let nextScene: StorySceneable
     
     init(image: ImageData? = nil,
-         nextScene: StoryScene) {
+         nextScene: StorySceneable) {
         self.nextScene = nextScene
         super.init(image: image)
     }

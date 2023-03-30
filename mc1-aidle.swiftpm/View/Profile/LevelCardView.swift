@@ -7,12 +7,19 @@
 
 import SwiftUI
 
+protocol LevelCardViewDelegate: AnyObject {
+    func levelCardDidEnd()
+}
+
 struct LevelCardView: View {
     
     let firstImageKey : String
     let secondImageKey : String
     
     @State private var fadeInOut = false
+    
+    weak var delegate: LevelCardViewDelegate?
+    
     var body: some View {
         ZStack{
             Color.backgroundColor.ignoresSafeArea()
@@ -28,6 +35,9 @@ struct LevelCardView: View {
                             fadeInOut.toggle()
                         }
                 }.opacity(fadeInOut ? 0 : 1)
+        }
+        .onTapGesture {
+            delegate?.levelCardDidEnd()
         }
     }
 }

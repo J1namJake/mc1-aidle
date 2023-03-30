@@ -17,6 +17,8 @@ struct NarrativeView: View {
                 stageView(stage: stage)
             case let storyScene as StoryScene:
                 storyView(scene: storyScene)
+            case let levelCard as LevelCard:
+                levelCardView(levelCard: levelCard)
             default:
                 restartView()
             }
@@ -39,6 +41,15 @@ struct NarrativeView: View {
         let viewModel = StoryViewModel(scene: scene)
         viewModel.delegate = self.viewModel
         return StoryView(viewModel: viewModel)
+    }
+    
+    private func levelCardView(levelCard: LevelCard) -> some View {
+        var view = LevelCardView(
+            firstImageKey: levelCard.firstImageKey,
+            secondImageKey: levelCard.secondImageKey
+        )
+        view.delegate = viewModel
+        return view
     }
     
     private func restartView() -> some View {
