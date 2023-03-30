@@ -15,7 +15,7 @@ struct StoryView: View {
             ZStack {
                 imageView(width: geometry.size.width)
                 
-                if let scene = viewModel.getScene() {
+                if let scene = viewModel.getCurrentScene() {
                     VStack {
                         if let options = (scene as? SelectionStoryScene)?.options {
                             optionsView(options: options)
