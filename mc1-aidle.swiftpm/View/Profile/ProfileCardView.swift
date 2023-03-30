@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProfileCardView: View {
     
+    @State private var fadeInOut = false
+    
     @ObservedObject var viewModel: ProfileCardViewModel
     
     var body: some View {
@@ -20,6 +22,8 @@ struct ProfileCardView: View {
                 abilityView(profile: profile)
                 
             }
+        }.onTapGesture {
+            viewModel.levelUpdate()
         }
         
     }
@@ -29,7 +33,10 @@ struct ProfileCardView: View {
             ForEach(profile.ability) { ability in
                 HStack{
                     Text(ability.name)
-                    Text(ability.level)
+                    Text(String(ability.level.count))
+                    ForEach(0..<max(ability.level.count,0), id: \.self){ _ in
+                        Text(String(ability.level.count))
+                    }
                 }
             }
         }
@@ -38,7 +45,7 @@ struct ProfileCardView: View {
 
 struct ProfileCard_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = ProfileCardViewModel(profile: .juju)
+        let viewModel = ProfileCardViewModel(profile: .jujuDown)
         return ProfileCardView(viewModel: viewModel)
     }
 }
