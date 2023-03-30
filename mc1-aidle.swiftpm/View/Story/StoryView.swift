@@ -30,6 +30,8 @@ struct StoryView: View {
                 }
             }
         }
+        .ignoresSafeArea()
+        .background(Color.backgroundColor)
     }
     
     private func imageView(width: CGFloat) -> some View {
@@ -71,31 +73,28 @@ struct StoryView: View {
         VStack(spacing: 0) {
             HStack {
                 Text(scene.speaker.name)
-                    .font(.headline)
-                    .background(.black)
-                    .foregroundColor(.white)
-                
+                    .frame(height: 64)
+                    .padding(.horizontal, 24)
+                    .font(.system(size: 30))
+                    .background(.white)
+                    .border(.black, width: 5)
+                    .offset(y: 5)
                 Spacer()
             }
             
             VStack {
                 Text(scene.script)
+                    .font(.system(size: 24))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundColor(.white)
-                
-                HStack {
-                    Spacer()
-                    
-                    if scene is ContinuousStorySceneable || scene is ContinuousNarrativeSceneable {
-                        Text("Next")
-                            .foregroundColor(.accentColor)
-                    }
-                }
+                Spacer()
             }
-            .padding()
-            .background(.black.opacity(0.5))
+            .padding(32)
+            .frame(height: 311)
+            .background(
+                Image("layout_dialog")
+                    .resizable()
+            )
         }
-        .padding()
         .onTapGesture {
             viewModel.gotoNextScene()
         }
