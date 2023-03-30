@@ -6,7 +6,7 @@ struct ContentView: View {
     }
     
     private func narrativeView() -> some View {
-        let viewModel = NarrativeViewModel(scene: Profile.Sample.chapter1)
+        let viewModel = NarrativeViewModel(scene: Stage.Sample.first)
         return NarrativeView(viewModel: viewModel)
     }
 }

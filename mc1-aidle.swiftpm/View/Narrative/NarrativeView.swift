@@ -13,14 +13,22 @@ struct NarrativeView: View {
     var body: some View {
         Group {
             switch viewModel.getCurrentScene() {
-            case let profile as Profile:
-                profileView(profile: profile)
+            case let stage as Stage:
+                stageView(stage: stage)
             case let storyScene as StoryScene:
                 storyView(scene: storyScene)
+            case let levelCard as LevelCard:
+                levelCardView(levelCard: levelCard)
             default:
                 restartView()
             }
         }
+    }
+    
+    private func stageView(stage: Stage) -> some View {
+        let viewModel = StageViewModel(stage: stage)
+        viewModel.delegate = self.viewModel
+        return StageView(viewModel: viewModel)
     }
     
     private func profileView(profile: Profile) -> some View {
@@ -35,6 +43,15 @@ struct NarrativeView: View {
         return StoryView(viewModel: viewModel)
     }
     
+    private func levelCardView(levelCard: LevelCard) -> some View {
+        var view = LevelCardView(
+            firstImageKey: levelCard.firstImageKey,
+            secondImageKey: levelCard.secondImageKey
+        )
+        view.delegate = viewModel
+        return view
+    }
+    
     private func restartView() -> some View {
         var view = RestartView()
         view.delegate = self.viewModel
@@ -44,7 +61,7 @@ struct NarrativeView: View {
 
 struct NarrativeView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = NarrativeViewModel(scene: Profile.Sample.chapter1)
+        let viewModel = NarrativeViewModel(scene: Stage.Sample.first)
         return NarrativeView(viewModel: viewModel)
     }
 }

@@ -21,13 +21,21 @@ final class NarrativeViewModel: ObservableObject {
     }
 }
 
+extension NarrativeViewModel: StageViewModelDelegate {
+    func stageDidEnd(nextScene: NarrativeSceneable?) {
+        withAnimation {
+            currentScene = nextScene
+        }
+    }
+}
+
 extension NarrativeViewModel: ProfileCardViewModelDelegate {
     func profileCardDidEnd() {
-        guard let continousScene = currentScene as? ContinuousNarrativeSceneable else {
+        guard let scene = currentScene as? ContinuousNarrativeSceneable else {
             return
         }
         withAnimation {
-            currentScene = continousScene.nextScene
+            currentScene = scene.nextScene
         }
     }
 }
@@ -36,6 +44,17 @@ extension NarrativeViewModel: StoryViewModelDelegate {
     func storyDidEnd(nextScene: NarrativeSceneable?) {
         withAnimation {
             currentScene = nextScene
+        }
+    }
+}
+
+extension NarrativeViewModel: LevelCardViewDelegate {
+    func levelCardDidEnd() {
+        guard let scene = currentScene as? ContinuousNarrativeSceneable else {
+            return
+        }
+        withAnimation {
+            currentScene = scene.nextScene
         }
     }
 }

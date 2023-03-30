@@ -14,14 +14,14 @@ protocol StoryViewModelDelegate: AnyObject {
 class StoryViewModel: ObservableObject {
     @Published private var currentScene: StorySceneable? {
         didSet {
-            guard let imageKey = currentScene?.imageKey else {
+            guard let image = currentScene?.image else {
                 return
             }
-            self.imageKey = imageKey
+            self.image = image
         }
     }
     
-    @Published private var imageKey: String?
+    @Published private var image: ImageData?
     
     weak var delegate: StoryViewModelDelegate?
     
@@ -33,8 +33,8 @@ class StoryViewModel: ObservableObject {
         currentScene
     }
     
-    func getImageKey() -> String? {
-        imageKey
+    func getImage() -> ImageData? {
+        image
     }
     
     func gotoNextScene() {

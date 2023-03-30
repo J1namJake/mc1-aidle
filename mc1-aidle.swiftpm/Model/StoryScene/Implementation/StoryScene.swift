@@ -8,9 +8,9 @@
 import Foundation
 
 class StoryScene: StorySceneable, NarrativeSceneable {
-    let imageKey: String?
+    let image: ImageData?
     
-    init(imageKey: String? = nil) {
-        self.imageKey = imageKey
+    init(image: ImageData? = nil) {
+        self.image = image
     }
 }

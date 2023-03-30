@@ -32,6 +32,9 @@ struct StageView: View {
                 }
             }
         }
+        .onTapGesture {
+            viewModel.gotoNextScene()
+        }
     }
 }
 

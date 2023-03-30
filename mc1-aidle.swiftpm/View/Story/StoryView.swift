@@ -13,7 +13,9 @@ struct StoryView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                imageView(width: geometry.size.width)
+                if let image = viewModel.getImage() {
+                    imageView(image: image, width: geometry.size.width)
+                }
                 
                 if let scene = viewModel.getCurrentScene() {
                     VStack {
@@ -31,20 +33,23 @@ struct StoryView: View {
             }
         }
         .ignoresSafeArea()
+        .background(Color.backgroundColor)
     }
     
-    private func imageView(width: CGFloat) -> some View {
+    private func imageView(image: ImageData, width: CGFloat) -> some View {
         Group {
-            if let imageKey = viewModel.getImageKey() {
-                Image(imageKey)
+            if image.isGif {
+                GifImage(name: image.key)
+            } else {
+                Image(image.key)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: width)
-                    .animation(.easeInOut, value: imageKey)
-                    .onTapGesture {
-                        viewModel.gotoNextScene()
-                    }
             }
+        }
+        .frame(width: width)
+        .animation(.easeInOut, value: image)
+        .onTapGesture {
+            viewModel.gotoNextScene()
         }
     }
     
@@ -73,15 +78,17 @@ struct StoryView: View {
     
     private func dialogView(scene: DialogStorySceneable) -> some View {
         VStack(spacing: 0) {
-            HStack {
-                Text(scene.speaker.name)
-                    .frame(height: 64)
-                    .padding(.horizontal, 24)
-                    .font(.system(size: 30))
-                    .background(.white)
-                    .border(.black, width: 5)
-                    .offset(y: 5)
-                Spacer()
+            if let speaker = scene.speaker {
+                HStack {
+                    Text(speaker.name)
+                        .frame(height: 64)
+                        .padding(.horizontal, 24)
+                        .font(.system(size: 30))
+                        .background(.white)
+                        .border(.black, width: 5)
+                        .offset(y: 5)
+                    Spacer()
+                }
             }
             
             VStack {
