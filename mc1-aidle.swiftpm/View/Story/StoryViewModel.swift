@@ -7,29 +7,45 @@
 
 import Foundation
 
+protocol StoryViewModelDelegate: AnyObject {
+    func storyDidEnd(nextScene: NarrativeSceneable?)
+}
+
 class StoryViewModel: ObservableObject {
-    @Published var scene: StoryScene? {
+    @Published private var scene: StorySceneable? {
         didSet {
-            if let imageKey = scene?.imageKey {
-                self.imageKey = imageKey
+            guard let imageKey = scene?.imageKey else {
+                return
             }
+            self.imageKey = imageKey
         }
     }
     
-    @Published var imageKey: String?
+    @Published private var imageKey: String?
+    
+    weak var delegate: StoryViewModelDelegate?
     
     init(scene: StoryScene) {
         self.scene = scene
     }
     
-    func gotoNextScene() {
-        guard let generalScene = scene as? GeneralStoryScene else {
-            return
-        }
-        scene = generalScene.nextScene
+    func getScene() -> StorySceneable? {
+        scene
     }
     
-    func gotoScene(of option: StorySceneHasOptions.Option) {
+    func getImageKey() -> String? {
+        imageKey
+    }
+    
+    func gotoNextScene() {
+        if let storyScene = scene as? ContinuousStorySceneable {
+            scene = storyScene.nextScene
+        } else if let narrativeScene = scene as? ContinuousNarrativeSceneable {
+            delegate?.storyDidEnd(nextScene: narrativeScene.nextScene)
+        }
+    }
+    
+    func gotoScene(of option: SelectionStoryScene.Option) {
         guard let nextScene = option.nextScene else {
             return
         }

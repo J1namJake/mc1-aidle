@@ -1,0 +1,24 @@
+//
+//  EndingStoryScene.swift
+//  mc1-aidle
+//
+//  Created by byo on 2023/03/28.
+//
+
+import Foundation
+
+final class EndingStoryScene: StoryScene, DialogStorySceneable, ContinuousNarrativeSceneable {
+    let speaker: Speakerable
+    let script: String
+    let nextScene: NarrativeSceneable?
+    
+    init(imageKey: String? = nil,
+         speaker: Speakerable,
+         script: String,
+         nextScene: NarrativeSceneable?) {
+        self.speaker = speaker
+        self.script = script
+        self.nextScene = nextScene
+        super.init(imageKey: imageKey)
+    }
+}
