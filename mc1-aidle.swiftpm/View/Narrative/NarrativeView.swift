@@ -12,7 +12,7 @@ struct NarrativeView: View {
     
     var body: some View {
         Group {
-            switch viewModel.getScene() {
+            switch viewModel.getCurrentScene() {
             case let profile as Profile:
                 profileView(profile: profile)
             case let storyScene as StoryScene:

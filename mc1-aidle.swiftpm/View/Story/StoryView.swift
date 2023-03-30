@@ -31,7 +31,6 @@ struct StoryView: View {
             }
         }
         .ignoresSafeArea()
-        .background(Color.backgroundColor)
     }
     
     private func imageView(width: CGFloat) -> some View {
@@ -41,6 +40,7 @@ struct StoryView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: width)
+                    .animation(.easeInOut, value: imageKey)
                     .onTapGesture {
                         viewModel.gotoNextScene()
                     }
