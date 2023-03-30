@@ -12,6 +12,7 @@ extension StoryScene {
         
         static let afml = GeneralStoryScene(
             image: ImageData(key: "aFML"),
+            audioKey: "스폰지밥",
             script: "발표 하루 전",
             nextScene: StoryScene.StoryScene4.pizzaCall
         )
@@ -50,7 +51,7 @@ extension StoryScene {
             script: "당장 통장에 돈이 없으니 돈을 마련해야 된다.",
             options: [
                 .init(
-                    text: "카뱅 금리 7.63% 비상금대출 마통을 땡긴다.",
+                    text: "카뱅 금리 7.63% 비상금 마통을 땡긴다.",
                     nextScene: StoryScene.StoryScene4.theGlory
                 ),
                 .init(
@@ -66,6 +67,7 @@ extension StoryScene {
         
         static let theGlory = GeneralStoryScene(
             image: ImageData(key: "제이크2"),
+            audioKey: "멋지다연진아",
             speaker: Learner.jake,
             script: "비록 통장 잔고는 처참하지만... 야근.. 할 수 있겠지? 그래.. 그거면 된 거야... 멋지다 (A)I-dle!",
             nextScene: StoryScene.StoryScene4.workHard
@@ -79,7 +81,7 @@ extension StoryScene {
         )
         
         static let nowMessy = GeneralStoryScene(
-            image: ImageData(key: "11"),
+            image: ImageData(key: "desk06"),
             speaker: Learner.ddan,
             script: "쥬쥬는 멀티가 안되서 아무리 불러도 대답이 없다 (ㄹㅇ 노답) 난 테크인데 코딩을 할 수 없다 (역시 🐶노답) 뭘 해야하지..? (테오만 혼자 뺑이 치는 각인데...)",
             nextScene: StoryScene.StoryScene4.ddanChoice
@@ -90,7 +92,7 @@ extension StoryScene {
             script: "쥬쥬는 멀티가 안되서 아무리 불러도 대답이 없다 (ㄹㅇ 노답) 난 테크인데 코딩을 할 수 없다 (역시 🐶노답) 뭘 해야하지..? (테오만 혼자 뺑이 치는 각인데...)",
             options: [
                 .init(
-                    text: "테오가 하드캐리하느라 매우 바빠보인다. 도와줘야..겠지?",
+                    text: "테오가 너무 바빠보인다. 도와줘야..겠지?",
                     nextScene: StoryScene.StoryScene4.tempDdan
                 ),
                 .init(
@@ -110,6 +112,7 @@ extension StoryScene {
         
         static let suriSuri = GeneralStoryScene(
             image: ImageData(key: "harry"),
+            audioKey: "해리",
             speaker: Learner.suri,
             script: "해리스타일스 공연을 보고 왔더니 내가 발표자로 지목되었다.. 인생의 발표는 모두 피해왔는데...",
             nextScene: StoryScene.StoryScene4.suriChoice
