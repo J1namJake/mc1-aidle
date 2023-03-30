@@ -44,7 +44,7 @@ extension StoryScene {
         )
         
         static let sticker = GeneralStoryScene(
-            image: ImageData(key: "밸런스게임1"),
+            image: ImageData(key: "balanceGame1"),
             script: "스티커판 설문을 진행해야 한다. 하지만 사람들에게 다가가기 조차 힘든 (A)I-DLE",
             nextScene: StoryScene.Stage3.brave
         )
@@ -65,7 +65,7 @@ extension StoryScene {
         )
         
         static let result = EndingStoryScene(
-            image: ImageData(key: "밸런스게임2"),
+            image: ImageData(key: "balanceGame2"),
             script: "무려 80명 러너의 설문 참여...!  아카데미에 생각보다 내향인이 많고 정서적 교류가 우선인 사람들이 많은걸! 이것 참 대박인걸 하하",
             nextScene: LevelCard.Stage3.theo
         )
