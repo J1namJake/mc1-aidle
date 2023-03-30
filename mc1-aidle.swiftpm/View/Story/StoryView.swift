@@ -63,7 +63,7 @@ struct StoryView: View {
                         .frame(height: 75)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 32)
-                        .font(.system(size: 24))
+                        .font(.custom(.dungGeun, size: 24))
                         .foregroundColor(.black)
                 }
                 .background(
@@ -83,7 +83,7 @@ struct StoryView: View {
                     Text(speaker.name)
                         .frame(height: 64)
                         .padding(.horizontal, 24)
-                        .font(.system(size: 30))
+                        .font(.custom(.dungGeun, size: 30))
                         .background(.white)
                         .border(.black, width: 5)
                         .offset(y: 5)
@@ -93,7 +93,7 @@ struct StoryView: View {
             
             VStack {
                 Text(scene.script)
-                    .font(.system(size: 24))
+                    .font(.custom(.dungGeun, size: 24))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()
             }

@@ -7,17 +7,22 @@
 
 import Foundation
 
-class Stage : NarrativeSceneable, ContinuousNarrativeSceneable {
-    var nextScene: NarrativeSceneable?
-    
+class Stage: NarrativeSceneable, ContinuousNarrativeSceneable, AudioNarrativeSceneable {
     let stageNum : String
     let title : String
     let titleImageKey : String
+    let audioKey: String?
+    let nextScene: NarrativeSceneable?
     
-    init(stageNum: String, title: String, titleImageKey: String, nextScene: NarrativeSceneable?) {
+    init(stageNum: String,
+         title: String,
+         titleImageKey: String,
+         audioKey: String? = nil,
+         nextScene: NarrativeSceneable?) {
         self.stageNum = stageNum
         self.title = title
         self.titleImageKey = titleImageKey
+        self.audioKey = audioKey
         self.nextScene = nextScene
     }
 }

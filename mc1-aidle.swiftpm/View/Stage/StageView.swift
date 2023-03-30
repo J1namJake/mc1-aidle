@@ -17,11 +17,11 @@ struct StageView: View {
             VStack{
                 if let stage = viewModel.stage {
                     Text(stage.stageNum)
-                        .font(.system(size: 80))
+                        .font(.custom(.neo, size: 80))
                         .foregroundColor(.titleTextColor)
                         .padding(1)
                     Text(stage.title)
-                        .font(.system(size: 40))
+                        .font(.custom(.neo, size: 40))
                         .foregroundColor(.titleTextColor)
                     Spacer()
                     Image(stage.titleImageKey)

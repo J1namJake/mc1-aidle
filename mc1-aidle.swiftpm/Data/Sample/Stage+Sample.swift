@@ -13,6 +13,7 @@ extension Stage {
             stageNum: "Chapter 1",
             title: "시나리오 집어넣기",
             titleImageKey: "stage1Image",
+            audioKey: "불타는소리",
             nextScene: StoryScene.Sample.hi
         )
         

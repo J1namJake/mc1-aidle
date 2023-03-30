@@ -17,11 +17,11 @@ struct ProfileCardView: View {
             VStack{
                 if let profile = viewModel.profile {
                     Text(profile.level)
-                        .font(.system(size: 80))
+                        .font(.custom(.dungGeun, size: 80))
                         .foregroundColor(.titleTextColor)
                         .padding(29)
                     Text(profile.name)
-                        .font(.system(size: 40))
+                        .font(.custom(.dungGeun, size: 40))
                         .foregroundColor(.titleTextColor)
                     Image(profile.imageKey)
                         .resizable()
@@ -48,10 +48,10 @@ struct ProfileCardView: View {
             ForEach(profile.ability) { ability in
                 HStack{
                     Text(ability.name)
-                        .font(.system(size: 25))
+                        .font(.custom(.dungGeun, size: 25))
                         .foregroundColor(.titleTextColor)
                     ForEach(0..<max(ability.level.count,0), id: \.self){ _ in
-                        Text(ability.level.imoge).font(.system(size: 34))
+                        Text(ability.level.imoge).font(.custom(.dungGeun, size: 34))
                     }
                 }.padding(12)
             }
