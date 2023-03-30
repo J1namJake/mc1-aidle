@@ -11,7 +11,6 @@ extension StoryScene {
     enum Sample {
         static let hi = GeneralStoryScene(
             image: ImageData(key: "sample_너굴맨"),
-            speaker: Learner.byo,
             script: "안녕하세요~",
             nextScene: Sample.general
         )

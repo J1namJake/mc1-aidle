@@ -8,12 +8,12 @@
 import Foundation
 
 final class EndingStoryScene: StoryScene, DialogStorySceneable, ContinuousNarrativeSceneable {
-    let speaker: Speakerable
+    let speaker: Speakerable?
     let script: String
     let nextScene: NarrativeSceneable?
     
     init(image: ImageData? = nil,
-         speaker: Speakerable,
+         speaker: Speakerable? = nil,
          script: String,
          nextScene: NarrativeSceneable?) {
         self.speaker = speaker

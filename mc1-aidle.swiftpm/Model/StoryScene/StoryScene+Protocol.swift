@@ -12,7 +12,7 @@ protocol StorySceneable: AnyObject {
 }
 
 protocol DialogStorySceneable: StorySceneable {
-    var speaker: Speakerable { get }
+    var speaker: Speakerable? { get }
     var script: String { get }
 }
 

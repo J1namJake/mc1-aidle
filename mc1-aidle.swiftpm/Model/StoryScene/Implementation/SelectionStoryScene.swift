@@ -8,12 +8,12 @@
 import Foundation
 
 final class SelectionStoryScene: StoryScene, DialogStorySceneable {
-    let speaker: Speakerable
+    let speaker: Speakerable?
     let script: String
     let options: [Option]
     
     init(image: ImageData? = nil,
-         speaker: Speakerable,
+         speaker: Speakerable? = nil,
          script: String,
          options: [Option]) {
         self.speaker = speaker

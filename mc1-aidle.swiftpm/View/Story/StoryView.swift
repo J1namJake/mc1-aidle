@@ -78,15 +78,17 @@ struct StoryView: View {
     
     private func dialogView(scene: DialogStorySceneable) -> some View {
         VStack(spacing: 0) {
-            HStack {
-                Text(scene.speaker.name)
-                    .frame(height: 64)
-                    .padding(.horizontal, 24)
-                    .font(.system(size: 30))
-                    .background(.white)
-                    .border(.black, width: 5)
-                    .offset(y: 5)
-                Spacer()
+            if let speaker = scene.speaker {
+                HStack {
+                    Text(speaker.name)
+                        .frame(height: 64)
+                        .padding(.horizontal, 24)
+                        .font(.system(size: 30))
+                        .background(.white)
+                        .border(.black, width: 5)
+                        .offset(y: 5)
+                    Spacer()
+                }
             }
             
             VStack {
