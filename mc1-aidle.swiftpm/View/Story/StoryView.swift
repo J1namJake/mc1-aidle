@@ -13,7 +13,9 @@ struct StoryView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                imageView(width: geometry.size.width)
+                if let image = viewModel.getImage() {
+                    imageView(image: image, width: geometry.size.width)
+                }
                 
                 if let scene = viewModel.getCurrentScene() {
                     VStack {
@@ -31,20 +33,23 @@ struct StoryView: View {
             }
         }
         .ignoresSafeArea()
+        .background(Color.backgroundColor)
     }
     
-    private func imageView(width: CGFloat) -> some View {
+    private func imageView(image: ImageData, width: CGFloat) -> some View {
         Group {
-            if let imageKey = viewModel.getImageKey() {
-                Image(imageKey)
+            if image.isGif {
+                GifImage(name: image.key)
+            } else {
+                Image(image.key)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: width)
-                    .animation(.easeInOut, value: imageKey)
-                    .onTapGesture {
-                        viewModel.gotoNextScene()
-                    }
             }
+        }
+        .frame(width: width)
+        .animation(.easeInOut, value: image)
+        .onTapGesture {
+            viewModel.gotoNextScene()
         }
     }
     

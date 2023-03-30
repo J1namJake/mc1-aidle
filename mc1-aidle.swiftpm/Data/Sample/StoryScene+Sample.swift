@@ -10,14 +10,14 @@ import Foundation
 extension StoryScene {
     enum Sample {
         static let hi = GeneralStoryScene(
-            imageKey: "sample_너굴맨",
+            image: ImageData(key: "sample_너굴맨"),
             speaker: Learner.byo,
             script: "안녕하세요~",
             nextScene: Sample.general
         )
         
         static let general = GeneralStoryScene(
-            imageKey: "sample_회의",
+            image: ImageData(key: "sample_회의"),
             speaker: Learner.byo,
             script: "일반적인 장면은 GeneralStoryScene 클래스로 만들 수 있어요.",
             nextScene: Sample.selection
@@ -45,11 +45,12 @@ extension StoryScene {
         )
         
         static let image = ImageStoryScene(
-            imageKey: "sample_image",
+            image: ImageData(key: "sample_image"),
             nextScene: Sample.ending
         )
         
         static let ending = EndingStoryScene(
+            image: ImageData(key: "sample_thanks", isGif: true),
             speaker: Learner.byo,
             script: "EndingStoryScene 클래스는 하나의 이야기가 끝나고, 다른 챕터로 넘어가거나 특수한 장면을 보여줘야 할 때 사용됩니다.",
             nextScene: Stage.Sample.second

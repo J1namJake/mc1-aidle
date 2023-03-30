@@ -8,7 +8,7 @@
 import Foundation
 
 protocol StorySceneable: AnyObject {
-    var imageKey: String? { get }
+    var image: ImageData? { get }
 }
 
 protocol DialogStorySceneable: StorySceneable {

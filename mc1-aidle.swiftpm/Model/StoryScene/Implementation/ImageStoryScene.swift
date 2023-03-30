@@ -10,9 +10,9 @@ import Foundation
 final class ImageStoryScene: StoryScene, ContinuousStorySceneable {
     let nextScene: StorySceneable
     
-    init(imageKey: String? = nil,
+    init(image: ImageData? = nil,
          nextScene: StoryScene) {
         self.nextScene = nextScene
-        super.init(imageKey: imageKey)
+        super.init(image: image)
     }
 }
