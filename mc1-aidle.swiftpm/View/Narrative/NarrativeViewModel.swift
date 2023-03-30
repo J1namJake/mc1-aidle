@@ -8,9 +8,11 @@
 import SwiftUI
 
 final class NarrativeViewModel: ObservableObject {
+    private let initialScene: NarrativeSceneable
     @Published private var currentScene: NarrativeSceneable?
     
     init(scene: NarrativeSceneable) {
+        self.initialScene = scene
         self.currentScene = scene
     }
     
@@ -34,6 +36,14 @@ extension NarrativeViewModel: StoryViewModelDelegate {
     func storyDidEnd(nextScene: NarrativeSceneable?) {
         withAnimation {
             currentScene = nextScene
+        }
+    }
+}
+
+extension NarrativeViewModel: RestartViewDelegate {
+    func restartDidEnd() {
+        withAnimation {
+            currentScene = initialScene
         }
     }
 }

@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ProfileCardView: View {
     
-    @State private var fadeInOut = false
-    
     @ObservedObject var viewModel: ProfileCardViewModel
     
     var body: some View {

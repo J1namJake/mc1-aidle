@@ -30,8 +30,6 @@ class ProfileCardViewModel : ObservableObject{
                 ability.levelUpdate(levelUpdate: updateLevel)
             }
         }
-        print("update")
-        
         profile = updateProfile
     }
     
