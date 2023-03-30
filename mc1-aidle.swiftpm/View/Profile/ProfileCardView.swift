@@ -18,11 +18,11 @@ struct ProfileCardView: View {
             Color.backgroundColor.ignoresSafeArea()
             VStack{
                 if let profile = viewModel.profile {
-                    Text(profile.chapter)
+                    Text(profile.level)
                         .font(.system(size: 80))
                         .foregroundColor(.titleTextColor)
                         .padding(29)
-                    Text(profile.title)
+                    Text(profile.name)
                         .font(.system(size: 40))
                         .foregroundColor(.titleTextColor)
                     Image(profile.imageKey)

@@ -24,15 +24,14 @@ class ProfileCardViewModel : ObservableObject{
         guard var updateProfile = profile else {
             return
         }
-        if updateProfile.levelUpdateFlag {
-            for ability in updateProfile.ability{
-                for updateLevel in updateProfile.levelUpdate ?? [] {
-                    ability.levelUpdate(levelUpdate: updateLevel)
-                }
+    
+        for ability in updateProfile.ability{
+            for updateLevel in updateProfile.levelUpdate ?? [] {
+                ability.levelUpdate(levelUpdate: updateLevel)
             }
-            updateProfile.levelUpdateFlag = false
-            print("update")
         }
+        print("update")
+        
         profile = updateProfile
     }
     
