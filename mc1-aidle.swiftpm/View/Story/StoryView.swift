@@ -39,7 +39,17 @@ struct StoryView: View {
     private func imageView(image: ImageData, width: CGFloat) -> some View {
         Group {
             if image.isGif {
-                GifImage(name: image.key)
+                if let gifImg = UIImage(named: "\(image.key).gif") {
+                    let cgImage = gifImg.cgImage!
+                    let width = CGFloat(cgImage.width)
+                    let height = CGFloat(cgImage.height)
+                    GeometryReader { geometry in
+                        let ratio = geometry.size.width / width
+                        GifImage(name: image.key)
+                            .frame(height: height * ratio)
+                    }
+                }
+                
             } else {
                 Image(image.key)
                     .resizable()
