@@ -18,7 +18,7 @@ extension StoryScene {
         )
         
         static let pizzaCall = GeneralStoryScene(
-            image: ImageData(key: "피곤"),
+            image: ImageData(key: "tired"),
             speaker: Learner.jake,
             script: "계속되는 작업으로 팀원들이 지쳤고 딴은 농담으로 나한테 피자를 사달라고 한다. \n하지만 나는 통장잔고 부족으로 인해 무지출 챌린지를 하는 중이다.",
             nextScene: StoryScene.StoryScene4.pizzaGoldenBell
@@ -40,7 +40,7 @@ extension StoryScene {
         )
         
         static let noMoney = GeneralStoryScene(
-            image: ImageData(key: "피곤"),
+            image: ImageData(key: "tired"),
             speaker: Learner.jake,
             script: "당장 통장에 돈이 없으니 돈을 마련해야 된다.",
             nextScene: StoryScene.StoryScene4.moneyHow
@@ -66,7 +66,7 @@ extension StoryScene {
         )
         
         static let theGlory = GeneralStoryScene(
-            image: ImageData(key: "제이크2"),
+            image: ImageData(key: "2jake"),
             audioKey: "멋지다연진아",
             speaker: Learner.jake,
             script: "비록 통장 잔고는 처참하지만... 야근.. 할 수 있겠지? 그래.. 그거면 된 거야... 멋지다 (A)I-dle!",
@@ -135,7 +135,7 @@ extension StoryScene {
         )
 
         static let ending4 = EndingStoryScene(
-            image: ImageData(key: "발표", isGif: false),
+            image: ImageData(key: "presentation", isGif: false),
             script: "발표는 쥬쥬와 테오가 맡게 되었다.",
             nextScene: LevelCard.Sample.juju
         )
