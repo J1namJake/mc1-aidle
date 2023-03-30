@@ -11,13 +11,13 @@ extension StoryScene {
     enum Stage3 {
         
         static let interview = GeneralStoryScene(
-            image: ImageData(key: "sample_회의"),
+            image: ImageData(key: "interview"),
             script: "심층 인터뷰를 하고 온 (A)I-DLE 누군가와 심도 있는 딥톡을 하는 과정에서 자아성찰의 시간을 가졌다.",
             nextScene: StoryScene.Stage3.interview2
         )
         
         static let interview2 = GeneralStoryScene(
-            image: ImageData(key: "sample_회의"),
+            image: ImageData(key: "interview"),
             script: "우리들의 인터뷰처럼 대부분의 I들은 연결감을 느끼고 싶으나, 연결감을 느끼고 싶은 사람 수는 적구나!",
             nextScene: StoryScene.Stage3.analyze
         )
@@ -44,7 +44,7 @@ extension StoryScene {
         )
         
         static let sticker = GeneralStoryScene(
-            image: ImageData(key: "sample_회의"),
+            image: ImageData(key: "밸런스게임1"),
             script: "스티커판 설문을 진행해야 한다. 하지만 사람들에게 다가가기 조차 힘든 (A)I-DLE",
             nextScene: StoryScene.Stage3.brave
         )
@@ -65,7 +65,7 @@ extension StoryScene {
         )
         
         static let result = EndingStoryScene(
-            image: ImageData(key: "sample_회의"),
+            image: ImageData(key: "밸런스게임2"),
             script: "무려 80명 러너의 설문 참여...!  아카데미에 생각보다 내향인이 많고 정서적 교류가 우선인 사람들이 많은걸! 이것 참 대박인걸 하하",
             nextScene: LevelCard.Stage3.theo
         )
