@@ -8,9 +8,11 @@
 import SwiftUI
 
 final class NarrativeViewModel: ObservableObject {
+    private let initialScene: NarrativeSceneable
     @Published private var currentScene: NarrativeSceneable?
     
     init(scene: NarrativeSceneable) {
+        self.initialScene = scene
         self.currentScene = scene
     }
     
@@ -40,9 +42,8 @@ extension NarrativeViewModel: StoryViewModelDelegate {
 
 extension NarrativeViewModel: RestartViewDelegate {
     func restartDidEnd() {
-        
         withAnimation {
-            currentScene = Profile.juju
+            currentScene = initialScene
         }
     }
 }
