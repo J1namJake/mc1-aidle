@@ -29,6 +29,7 @@ extension StoryScene {
         )
         
         static let selection1 = SelectionStoryScene(
+            audioKey: "고민할때",
             speaker: Learner.byo,
             script: "너무 좁아보이는데...",
             options: [
@@ -44,6 +45,7 @@ extension StoryScene {
         )
         
         static let jdd = GeneralStoryScene(
+            audioKey: "끼익",
             speaker: Learner.byo,
             script: "끼이익 (돈 나가는 소리)",
             nextScene: StoryScene.Byo.runorpay
@@ -65,6 +67,7 @@ extension StoryScene {
         )
         
         static let ckck = GeneralStoryScene(
+            audioKey: "철컹",
             speaker: Learner.byo,
             script: "철컹철컹",
             nextScene: StoryScene.Byo.runorpay2
