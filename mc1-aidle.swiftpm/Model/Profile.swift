@@ -72,7 +72,7 @@ extension Profile {
             .init(name: "발표", level: .init(imoge: "🌟", count: 2)),
             .init(name: "춤", level: .init(imoge: "⭐️", count: 5))
         ],
-        nextScene: StoryScene.first
+        nextScene: Sample.chapter1
     )
     
     static let jujuDown = Profile(

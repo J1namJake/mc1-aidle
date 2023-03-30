@@ -11,16 +11,15 @@ struct NarrativeView: View {
     @ObservedObject var viewModel: NarrativeViewModel
     
     var body: some View {
-        if let scene = viewModel.getScene() {
-            ZStack {
-                if let profile = scene as? Profile {
-                    profileView(profile: profile)
-                } else if let storyScene = scene as? StoryScene {
-                    storyView(scene: storyScene)
-                }
+        Group {
+            switch viewModel.getCurrentScene() {
+            case let profile as Profile:
+                profileView(profile: profile)
+            case let storyScene as StoryScene:
+                storyView(scene: storyScene)
+            default:
+                Text("끝")
             }
-        } else {
-            Text("끝")
         }
     }
     
@@ -39,7 +38,7 @@ struct NarrativeView: View {
 
 struct NarrativeView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = NarrativeViewModel(scene: Profile.juju)
+        let viewModel = NarrativeViewModel(scene: Profile.Sample.chapter1)
         return NarrativeView(viewModel: viewModel)
     }
 }

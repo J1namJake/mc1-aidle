@@ -12,9 +12,9 @@ protocol StoryViewModelDelegate: AnyObject {
 }
 
 class StoryViewModel: ObservableObject {
-    @Published private var scene: StorySceneable? {
+    @Published private var currentScene: StorySceneable? {
         didSet {
-            guard let imageKey = scene?.imageKey else {
+            guard let imageKey = currentScene?.imageKey else {
                 return
             }
             self.imageKey = imageKey
@@ -26,11 +26,11 @@ class StoryViewModel: ObservableObject {
     weak var delegate: StoryViewModelDelegate?
     
     init(scene: StoryScene) {
-        self.scene = scene
+        self.currentScene = scene
     }
     
-    func getScene() -> StorySceneable? {
-        scene
+    func getCurrentScene() -> StorySceneable? {
+        currentScene
     }
     
     func getImageKey() -> String? {
@@ -38,10 +38,13 @@ class StoryViewModel: ObservableObject {
     }
     
     func gotoNextScene() {
-        if let storyScene = scene as? ContinuousStorySceneable {
-            scene = storyScene.nextScene
-        } else if let narrativeScene = scene as? ContinuousNarrativeSceneable {
+        switch currentScene {
+        case let storyScene as ContinuousStorySceneable:
+            currentScene = storyScene.nextScene
+        case let narrativeScene as ContinuousNarrativeSceneable:
             delegate?.storyDidEnd(nextScene: narrativeScene.nextScene)
+        default:
+            break
         }
     }
     
@@ -49,6 +52,6 @@ class StoryViewModel: ObservableObject {
         guard let nextScene = option.nextScene else {
             return
         }
-        scene = nextScene
+        currentScene = nextScene
     }
 }
