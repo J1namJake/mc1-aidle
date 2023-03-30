@@ -7,10 +7,13 @@
 
 import Foundation
 
-class StoryScene: StorySceneable, NarrativeSceneable {
+class StoryScene: StorySceneable, NarrativeSceneable, AudioNarrativeSceneable {
     let image: ImageData?
+    let audioKey: String?
     
-    init(image: ImageData? = nil) {
+    init(image: ImageData? = nil,
+         audioKey: String? = nil) {
         self.image = image
+        self.audioKey = audioKey
     }
 }

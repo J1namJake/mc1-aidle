@@ -10,9 +10,13 @@ import SwiftUI
 struct NarrativeView: View {
     @ObservedObject var viewModel: NarrativeViewModel
     
+    private var currentScene: NarrativeSceneable? {
+        viewModel.getCurrentScene()
+    }
+    
     var body: some View {
         Group {
-            switch viewModel.getCurrentScene() {
+            switch currentScene {
             case let stage as Stage:
                 stageView(stage: stage)
             case let storyScene as StoryScene:

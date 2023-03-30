@@ -13,13 +13,14 @@ final class SelectionStoryScene: StoryScene, DialogStorySceneable {
     let options: [Option]
     
     init(image: ImageData? = nil,
+         audioKey: String? = nil,
          speaker: Speakerable? = nil,
          script: String,
          options: [Option]) {
         self.speaker = speaker
         self.script = script
         self.options = options
-        super.init(image: image)
+        super.init(image: image, audioKey: audioKey)
     }
 }
 

@@ -10,6 +10,10 @@ import Foundation
 protocol NarrativeSceneable: AnyObject {
 }
 
-protocol ContinuousNarrativeSceneable {
+protocol ContinuousNarrativeSceneable: NarrativeSceneable {
     var nextScene: NarrativeSceneable? { get }
+}
+
+protocol AudioNarrativeSceneable: NarrativeSceneable {
+    var audioKey: String? { get }
 }
