@@ -11,8 +11,9 @@ final class ImageStoryScene: StoryScene, ContinuousStorySceneable {
     let nextScene: StorySceneable
     
     init(image: ImageData? = nil,
+         audioKey: String? = nil,
          nextScene: StorySceneable) {
         self.nextScene = nextScene
-        super.init(image: image)
+        super.init(image: image, audioKey: audioKey)
     }
 }

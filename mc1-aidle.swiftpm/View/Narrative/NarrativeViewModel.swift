@@ -9,15 +9,34 @@ import SwiftUI
 
 final class NarrativeViewModel: ObservableObject {
     private let initialScene: NarrativeSceneable
-    @Published private var currentScene: NarrativeSceneable?
     
-    init(scene: NarrativeSceneable) {
+    @Published private var currentScene: NarrativeSceneable? {
+        didSet {
+            audioPlayer.stop()
+            tryToPlayAudio(scene: currentScene)
+        }
+    }
+    
+    private let audioPlayer: AudioPlayer
+    
+    init(scene: NarrativeSceneable,
+         audioPlayer: AudioPlayer = .shared) {
         self.initialScene = scene
         self.currentScene = scene
+        self.audioPlayer = audioPlayer
+        tryToPlayAudio(scene: scene)
     }
     
     func getCurrentScene() -> NarrativeSceneable? {
         currentScene
+    }
+    
+    func tryToPlayAudio(scene: NarrativeSceneable?) {
+        guard let audioScene = scene as? AudioNarrativeSceneable,
+              let audioKey = audioScene.audioKey else {
+            return
+        }
+        audioPlayer.play(key: audioKey)
     }
 }
 

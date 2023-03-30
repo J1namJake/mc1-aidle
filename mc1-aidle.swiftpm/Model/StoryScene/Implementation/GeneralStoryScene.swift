@@ -13,12 +13,13 @@ final class GeneralStoryScene: StoryScene, DialogStorySceneable, ContinuousStory
     let nextScene: StorySceneable
     
     init(image: ImageData? = nil,
+         audioKey: String? = nil,
          speaker: Speakerable? = nil,
          script: String,
          nextScene: StoryScene) {
         self.speaker = speaker
         self.script = script
         self.nextScene = nextScene
-        super.init(image: image)
+        super.init(image: image, audioKey: audioKey)
     }
 }
