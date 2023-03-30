@@ -7,21 +7,23 @@
 
 import Foundation
 
-struct Profile {
+class Profile: NarrativeSceneable, ContinuousNarrativeSceneable {
     let chapter: String
     let title : String
     let imageKey : String
     let ability: [Ability]
     var levelUpdateFlag: Bool
     let levelUpdate: [LevelUpdate]?
+    let nextScene: NarrativeSceneable?
     
-    init(chapter: String, title: String, imageKey: String, ability: [Ability], levelUpdateFlag: Bool = false, levelUpdate: [LevelUpdate]? = nil) {
+    init(chapter: String, title: String, imageKey: String, ability: [Ability], levelUpdateFlag: Bool = false, levelUpdate: [LevelUpdate]? = nil, nextScene: NarrativeSceneable?) {
         self.chapter = chapter
         self.title = title
         self.imageKey = imageKey
         self.ability = ability
         self.levelUpdateFlag = levelUpdateFlag
         self.levelUpdate = levelUpdate
+        self.nextScene = nextScene
     }
     
 }
@@ -64,14 +66,13 @@ extension Profile {
         }
     }
     
-    
-    
     static let juju = Profile(
         chapter: "Chapter.1", title: "숨막히는 첫만남", imageKey: "jujuTest", ability:[
             .init(name: "열정", level: .init(imoge: "🔥", count: 5)),
             .init(name: "발표", level: .init(imoge: "🌟", count: 2)),
             .init(name: "춤", level: .init(imoge: "⭐️", count: 5))
-        ]
+        ],
+        nextScene: StoryScene.first
     )
     
     static let jujuDown = Profile(
@@ -84,7 +85,7 @@ extension Profile {
             
             .init(name: "열정", updateCount: -2)
             
-        ]
+        ],
+        nextScene: nil
     )
-    
 }

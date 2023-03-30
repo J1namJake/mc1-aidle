@@ -15,11 +15,17 @@ struct StoryView: View {
             ZStack {
                 imageView(width: geometry.size.width)
                 
-                if let scene = viewModel.scene {
+                if let scene = viewModel.getScene() {
                     VStack {
-                        optionsView(scene: scene)
+                        if let options = (scene as? SelectionStoryScene)?.options {
+                            optionsView(options: options)
+                        }
+                        
                         Spacer()
-                        dialogView(scene: scene)
+                        
+                        if let dialogScene = scene as? DialogStorySceneable {
+                            dialogView(scene: dialogScene)
+                        }
                     }
                 }
             }
@@ -28,39 +34,40 @@ struct StoryView: View {
     
     private func imageView(width: CGFloat) -> some View {
         Group {
-            if let imageKey = viewModel.imageKey {
+            if let imageKey = viewModel.getImageKey() {
                 Image(imageKey)
                     .resizable()
                     .scaledToFit()
                     .frame(width: width)
+                    .onTapGesture {
+                        viewModel.gotoNextScene()
+                    }
             }
         }
     }
     
-    private func optionsView(scene: StoryScene) -> some View {
+    private func optionsView(options: [SelectionStoryScene.Option]) -> some View {
         VStack {
-            if let options = (scene as? StorySceneHasOptions)?.options {
-                ForEach(options) { option in
-                    Button {
-                        viewModel.gotoScene(of: option)
-                    } label: {
-                        Text(option.text)
-                            .padding()
-                            .font(.title)
-                            .background(
-                                Capsule()
-                                    .fill(Color.accentColor)
-                            )
-                            .foregroundColor(.white)
-                    }
+            ForEach(options) { option in
+                Button {
+                    viewModel.gotoScene(of: option)
+                } label: {
+                    Text(option.text)
+                        .padding()
+                        .font(.title)
+                        .background(
+                            Capsule()
+                                .fill(Color.accentColor)
+                        )
+                        .foregroundColor(.white)
                 }
-                .font(.largeTitle)
             }
+            .font(.largeTitle)
         }
         .padding()
     }
     
-    private func dialogView(scene: StoryScene) -> some View {
+    private func dialogView(scene: DialogStorySceneable) -> some View {
         VStack(spacing: 0) {
             HStack {
                 Text(scene.speaker.name)
@@ -78,10 +85,10 @@ struct StoryView: View {
                 
                 HStack {
                     Spacer()
-                    if scene is GeneralStoryScene {
-                        Button("Next") {
-                            viewModel.gotoNextScene()
-                        }
+                    
+                    if scene is ContinuousStorySceneable || scene is ContinuousNarrativeSceneable {
+                        Text("Next")
+                            .foregroundColor(.accentColor)
                     }
                 }
             }
@@ -89,6 +96,9 @@ struct StoryView: View {
             .background(.black.opacity(0.5))
         }
         .padding()
+        .onTapGesture {
+            viewModel.gotoNextScene()
+        }
     }
 }
 

@@ -7,14 +7,18 @@
 
 import Foundation
 
-final class GeneralStoryScene: StoryScene {
-    let nextScene: StoryScene
+final class GeneralStoryScene: StoryScene, DialogStorySceneable, ContinuousStorySceneable {
+    let speaker: Speakerable
+    let script: String
+    let nextScene: StorySceneable
     
     init(imageKey: String? = nil,
          speaker: Speakerable,
          script: String,
          nextScene: StoryScene) {
+        self.speaker = speaker
+        self.script = script
         self.nextScene = nextScene
-        super.init(imageKey: imageKey, speaker: speaker, script: script)
+        super.init(imageKey: imageKey)
     }
 }

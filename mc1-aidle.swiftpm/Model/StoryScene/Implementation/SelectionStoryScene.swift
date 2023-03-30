@@ -1,5 +1,5 @@
 //
-//  StorySceneHasOptions.swift
+//  SelectionStoryScene.swift
 //  mc1-aidle
 //
 //  Created by byo on 2023/03/28.
@@ -7,22 +7,26 @@
 
 import Foundation
 
-final class StorySceneHasOptions: StoryScene {
+final class SelectionStoryScene: StoryScene, DialogStorySceneable {
+    let speaker: Speakerable
+    let script: String
     let options: [Option]
     
     init(imageKey: String? = nil,
          speaker: Speakerable,
          script: String,
          options: [Option]) {
+        self.speaker = speaker
+        self.script = script
         self.options = options
-        super.init(imageKey: imageKey, speaker: speaker, script: script)
+        super.init(imageKey: imageKey)
     }
 }
 
-extension StorySceneHasOptions {
+extension SelectionStoryScene {
     final class Option: Identifiable {
         let text: String
-        let nextScene: StoryScene?
+        let nextScene: StorySceneable?
         
         init(text: String,
              nextScene: StoryScene?) {

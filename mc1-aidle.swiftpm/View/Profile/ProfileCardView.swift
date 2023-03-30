@@ -30,7 +30,10 @@ struct ProfileCardView: View {
                         .frame(width: 135,height: 207)
                         .padding(71)
                     abilityView(profile: profile)
-                    
+                }
+                
+                Button("Next(test)") {
+                    viewModel.gotoNextScene()
                 }
             }
             
