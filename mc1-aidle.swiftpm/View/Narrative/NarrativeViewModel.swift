@@ -21,6 +21,14 @@ final class NarrativeViewModel: ObservableObject {
     }
 }
 
+extension NarrativeViewModel: StageViewModelDelegate {
+    func stageDidEnd(nextScene: NarrativeSceneable?) {
+        withAnimation {
+            currentScene = nextScene
+        }
+    }
+}
+
 extension NarrativeViewModel: ProfileCardViewModelDelegate {
     func profileCardDidEnd() {
         guard let continousScene = currentScene as? ContinuousNarrativeSceneable else {

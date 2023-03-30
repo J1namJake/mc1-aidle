@@ -52,7 +52,7 @@ extension StoryScene {
         static let ending = EndingStoryScene(
             speaker: Learner.byo,
             script: "EndingStoryScene 클래스는 하나의 이야기가 끝나고, 다른 챕터로 넘어가거나 특수한 장면을 보여줘야 할 때 사용됩니다.",
-            nextScene: Profile.Sample.chapter2
+            nextScene: Stage.Sample.second
         )
     }
 }

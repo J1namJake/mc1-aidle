@@ -7,10 +7,20 @@
 
 import Foundation
 
+protocol StageViewModelDelegate: AnyObject {
+    func stageDidEnd(nextScene: NarrativeSceneable?)
+}
+
 class StageViewModel : ObservableObject{
     @Published var stage: Stage?
     
+    weak var delegate: StageViewModelDelegate?
+    
     init(stage: Stage? = nil) {
         self.stage = stage
+    }
+    
+    func gotoNextScene() {
+        delegate?.stageDidEnd(nextScene: stage?.nextScene)
     }
 }
