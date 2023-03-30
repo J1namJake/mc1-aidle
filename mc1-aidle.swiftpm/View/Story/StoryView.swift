@@ -104,7 +104,7 @@ struct StoryView: View {
 
 struct StoryView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = StoryViewModel(scene: .first)
+        let viewModel = StoryViewModel(scene: StoryScene.Sample.general)
         return StoryView(viewModel: viewModel)
     }
 }

@@ -38,7 +38,7 @@ struct NarrativeView: View {
 
 struct NarrativeView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = NarrativeViewModel(scene: Profile.juju)
+        let viewModel = NarrativeViewModel(scene: Profile.Sample.chapter1)
         return NarrativeView(viewModel: viewModel)
     }
 }
