@@ -14,16 +14,22 @@ struct ProfileCardView: View {
     @ObservedObject var viewModel: ProfileCardViewModel
     
     var body: some View {
-        VStack{
-            if let profile = viewModel.profile {
-                Text(profile.chapter)
-                Text(profile.title)
-                Image("")
-                abilityView(profile: profile)
-                
+        ZStack{
+            Color.backgroundColor.ignoresSafeArea()
+            VStack{
+                if let profile = viewModel.profile {
+                    Text(profile.chapter)
+                    Text(profile.title)
+                    Image("")
+                    abilityView(profile: profile)
+                    
+                }
             }
-        }.onTapGesture {
-            viewModel.levelUpdate()
+            
+            .onTapGesture {
+                viewModel.levelUpdate()
+            }
+            
         }
         
     }
@@ -33,11 +39,12 @@ struct ProfileCardView: View {
             ForEach(profile.ability) { ability in
                 HStack{
                     Text(ability.name)
-                    Text(String(ability.level.count))
+                        .font(.system(size: 25))
+                        .foregroundColor(.titleTextColor)
                     ForEach(0..<max(ability.level.count,0), id: \.self){ _ in
-                        Text(String(ability.level.count))
+                        Text(ability.level.imoge)
                     }
-                }
+                }.padding(24)
             }
         }
     }
