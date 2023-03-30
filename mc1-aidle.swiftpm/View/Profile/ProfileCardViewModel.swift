@@ -19,9 +19,21 @@ class ProfileCardViewModel : ObservableObject{
     init(profile: Profile? = nil) {
         self.profile = profile
     }
-    
-    func animateAbility() {
-        profile = profile?.animate
+ 
+    func levelUpdate() {
+        guard var updateProfile = profile else {
+            return
+        }
+        if updateProfile.levelUpdateFlag {
+            for ability in updateProfile.ability{
+                for updateLevel in updateProfile.levelUpdate ?? [] {
+                    ability.levelUpdate(levelUpdate: updateLevel)
+                }
+            }
+            updateProfile.levelUpdateFlag = false
+            print("update")
+        }
+        profile = updateProfile
     }
     
     func gotoNextScene() {

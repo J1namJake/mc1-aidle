@@ -48,6 +48,6 @@ extension StoryScene {
         imageKey: "meeting",
         speaker: ExtraSpeaker.teamMembers,
         script: "ㅎㅇㅎㅇ",
-        nextScene: Profile.byo
+        nextScene: nil
     )
 }

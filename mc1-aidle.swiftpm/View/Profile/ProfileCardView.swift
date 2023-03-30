@@ -8,30 +8,54 @@
 import SwiftUI
 
 struct ProfileCardView: View {
+    
+    @State private var fadeInOut = false
+    
     @ObservedObject var viewModel: ProfileCardViewModel
     
     var body: some View {
-        VStack{
-            if let profile = viewModel.profile {
-                Text(profile.chapter)
-                Text(profile.title)
-                Image("")
-                abilityView(profile: profile)
+        ZStack{
+            Color.backgroundColor.ignoresSafeArea()
+            VStack{
+                if let profile = viewModel.profile {
+                    Text(profile.chapter)
+                        .font(.system(size: 80))
+                        .foregroundColor(.titleTextColor)
+                        .padding(29)
+                    Text(profile.title)
+                        .font(.system(size: 40))
+                        .foregroundColor(.titleTextColor)
+                    Image(profile.imageKey)
+                        .resizable()
+                        .frame(width: 135,height: 207)
+                        .padding(71)
+                    abilityView(profile: profile)
+                }
+                
                 Button("Next(test)") {
                     viewModel.gotoNextScene()
                 }
             }
+            
+            .onTapGesture {
+                viewModel.levelUpdate()
+            }
+            
         }
         
     }
     
     private func abilityView(profile: Profile) -> some View {
-        VStack{
+        VStack(alignment: .leading){
             ForEach(profile.ability) { ability in
                 HStack{
                     Text(ability.name)
-                    Text(ability.level)
-                }
+                        .font(.system(size: 25))
+                        .foregroundColor(.titleTextColor)
+                    ForEach(0..<max(ability.level.count,0), id: \.self){ _ in
+                        Text(ability.level.imoge).font(.system(size: 34))
+                    }
+                }.padding(12)
             }
         }
     }
