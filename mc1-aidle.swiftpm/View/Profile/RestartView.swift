@@ -7,7 +7,14 @@
 
 import SwiftUI
 
+protocol RestartViewDelegate : AnyObject{
+    func restartDidEnd()
+}
+
 struct RestartView: View {
+    
+    weak var delegate: RestartViewDelegate?
+    
     var body: some View {
         ZStack{
             Color.backgroundColor.ignoresSafeArea()
@@ -15,7 +22,11 @@ struct RestartView: View {
                 .resizable()
                 .frame(width: 160, height: 252)
         }
+        .onTapGesture {
+            delegate?.restartDidEnd()
+        }
     }
+    
 }
 
 struct RestartView_Previews: PreviewProvider {

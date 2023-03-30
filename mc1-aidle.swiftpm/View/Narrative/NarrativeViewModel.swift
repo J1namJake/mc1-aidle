@@ -37,3 +37,12 @@ extension NarrativeViewModel: StoryViewModelDelegate {
         }
     }
 }
+
+extension NarrativeViewModel: RestartViewDelegate {
+    func restartDidEnd() {
+        
+        withAnimation {
+            currentScene = Profile.juju
+        }
+    }
+}

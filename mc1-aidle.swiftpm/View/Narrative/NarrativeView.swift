@@ -18,7 +18,7 @@ struct NarrativeView: View {
             case let storyScene as StoryScene:
                 storyView(scene: storyScene)
             default:
-                Text("끝")
+                restartView()
             }
         }
     }
@@ -33,6 +33,12 @@ struct NarrativeView: View {
         let viewModel = StoryViewModel(scene: scene)
         viewModel.delegate = self.viewModel
         return StoryView(viewModel: viewModel)
+    }
+    
+    private func restartView() -> some View {
+        var view = RestartView()
+        view.delegate = self.viewModel
+        return view
     }
 }
 
