@@ -55,18 +55,20 @@ struct StoryView: View {
                     viewModel.gotoScene(of: option)
                 } label: {
                     Text(option.text)
-                        .padding()
-                        .font(.title)
-                        .background(
-                            Capsule()
-                                .fill(Color.accentColor)
-                        )
-                        .foregroundColor(.white)
+                        .frame(height: 75)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 32)
+                        .font(.system(size: 24))
+                        .foregroundColor(.black)
                 }
+                .background(
+                    Image("layout_option")
+                        .resizable()
+                )
             }
-            .font(.largeTitle)
         }
-        .padding()
+        .padding(.top, 64)
+        .padding(.horizontal, 20)
     }
     
     private func dialogView(scene: DialogStorySceneable) -> some View {
