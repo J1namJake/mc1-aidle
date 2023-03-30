@@ -12,6 +12,7 @@ extension LevelCard {
         static let byo = LevelCard(
             firstImageKey: "byoLv1",
             secondImageKey: "byoLv2",
+            audioKey: "캐릭터카드등장",
             nextScene: nil
         )
     }
