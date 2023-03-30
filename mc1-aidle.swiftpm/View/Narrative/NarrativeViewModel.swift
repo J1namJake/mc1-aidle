@@ -12,8 +12,7 @@ final class NarrativeViewModel: ObservableObject {
     
     @Published private var currentScene: NarrativeSceneable? {
         didSet {
-            audioPlayer.stop()
-            tryToPlayAudio(scene: currentScene)
+            sceneDidSet(scene: currentScene)
         }
     }
     
@@ -24,14 +23,19 @@ final class NarrativeViewModel: ObservableObject {
         self.initialScene = scene
         self.currentScene = scene
         self.audioPlayer = audioPlayer
-        tryToPlayAudio(scene: scene)
+        sceneDidSet(scene: scene)
     }
     
     func getCurrentScene() -> NarrativeSceneable? {
         currentScene
     }
     
-    func tryToPlayAudio(scene: NarrativeSceneable?) {
+    private func sceneDidSet(scene: NarrativeSceneable?) {
+        audioPlayer.stop()
+        tryToPlayAudio(scene: currentScene)
+    }
+    
+    private func tryToPlayAudio(scene: NarrativeSceneable?) {
         guard let audioScene = scene as? AudioNarrativeSceneable,
               let audioKey = audioScene.audioKey else {
             return

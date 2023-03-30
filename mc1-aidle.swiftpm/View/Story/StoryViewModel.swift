@@ -14,9 +14,7 @@ protocol StoryViewModelDelegate: AnyObject {
 class StoryViewModel: ObservableObject {
     @Published private var currentScene: StorySceneable? {
         didSet {
-            setImage(scene: currentScene)
-            audioPlayer.stop()
-            tryToPlayAudio(scene: currentScene)
+            sceneDidSet(currentScene)
         }
     }
     
@@ -30,6 +28,7 @@ class StoryViewModel: ObservableObject {
          audioPlayer: AudioPlayer = .shared) {
         self.currentScene = scene
         self.audioPlayer = audioPlayer
+        sceneDidSet(scene)
     }
     
     func getCurrentScene() -> StorySceneable? {
@@ -56,6 +55,12 @@ class StoryViewModel: ObservableObject {
             return
         }
         currentScene = nextScene
+    }
+    
+    private func sceneDidSet(_ scene: StorySceneable?) {
+        setImage(scene: scene)
+        audioPlayer.stop()
+        tryToPlayAudio(scene: currentScene)
     }
     
     private func setImage(scene: StorySceneable?) {
